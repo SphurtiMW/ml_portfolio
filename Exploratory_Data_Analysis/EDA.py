@@ -12,7 +12,7 @@ warnings.filterwarnings("ignore")
 # Load Dataset
 def load_data(filepath):
     df = pd.read_csv(filepath)
-    print("✅ Dataset Loaded Successfully!")
+    print("Dataset Loaded Successfully!")
     print("\nFirst 5 rows of the dataset:\n", df.head())
     print("\nDataset Information:\n")
     print(df.info())
@@ -39,7 +39,7 @@ def preprocess_data(df):
     # Ensure data is sorted by time
     df = df.sort_index()
 
-    print("\n✅ Data Preprocessing Completed!")
+    print("\n Data Preprocessing Completed!")
     print("\nMissing Values After Cleaning:\n", df.isnull().sum())
 
     return df
@@ -47,7 +47,7 @@ def preprocess_data(df):
 # Handle Outliers Using Log Transformation
 def apply_log_transformation(df):
     df['Order_Demand_Log'] = np.log1p(df['Order_Demand'])  # log(1 + x) to avoid log(0)
-    print("\n✅ Log Transformation Applied!")
+    print("\n Log Transformation Applied!")
     return df
 
 # Check for Missing Dates
@@ -57,14 +57,14 @@ def check_missing_dates(df):
 
 # Basic Statistical Analysis
 def descriptive_analysis(df):
-    print("\n✅ Basic Statistical Summary:\n")
+    print("\n Basic Statistical Summary:\n")
     print(df.describe())
 
 # Plot Demand Distribution
 def plot_demand_distribution(df):
     plt.figure(figsize=(8, 5))
     sns.histplot(df['Order_Demand_Log'], kde=True, bins=30)
-    plt.title('✅ Log-Transformed Order Demand Distribution')
+    plt.title('Log-Transformed Order Demand Distribution')
     plt.xlabel('Log(Order Demand)')
     plt.ylabel('Frequency')
     plt.show()
@@ -72,14 +72,14 @@ def plot_demand_distribution(df):
 # Time Series Visualization
 def plot_time_series(df):
     plt.figure(figsize=(12, 6))
-    df['Order_Demand'].plot(title='✅ Order Demand Over Time')
+    df['Order_Demand'].plot(title='Order Demand Over Time')
     plt.xlabel('Date')
     plt.ylabel('Order Demand')
     plt.show()
 
 # Monthly Trends
 def plot_monthly_trends(df):
-    df.resample('M').sum()['Order_Demand'].plot(figsize=(12, 6), title='✅ Monthly Order Demand')
+    df.resample('M').sum()['Order_Demand'].plot(figsize=(12, 6), title='Monthly Order Demand')
     plt.xlabel('Month')
     plt.ylabel('Total Order Demand')
     plt.show()
@@ -98,20 +98,20 @@ def create_features(df):
     # Rolling Mean for Trend Analysis
     df['Rolling_Mean_7'] = df['Order_Demand'].rolling(window=7).mean()
 
-    print("\n✅ Feature Engineering Completed!\n")
+    print("\n Feature Engineering Completed!\n")
     return df
 
 # Perform ADF Test
 def test_stationarity(df):
-    print("\n✅ Performing Augmented Dickey-Fuller Test (ADF)...")
+    print("\n Performing Augmented Dickey-Fuller Test (ADF)...")
     result = adfuller(df['Order_Demand_Log'].dropna(), maxlag=10, autolag=None)
     print(f'ADF Statistic: {result[0]}')
     print(f'p-value: {result[1]}')
 
     if result[1] > 0.05:
-        print("❌ Data is NOT stationary. Differencing may be required.")
+        print("Data is NOT stationary. Differencing may be required.")
     else:
-        print("✅ Data is stationary.")
+        print("Data is stationary.")
 
 # Time Series Decomposition
 def decompose_time_series(df):
@@ -126,30 +126,30 @@ def plot_correlation(df):
 
     plt.figure(figsize=(8, 5))
     sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
-    plt.title('✅ Correlation Heatmap')
+    plt.title('Correlation Heatmap')
     plt.show()
 
 # Outlier Detection
 def detect_outliers(df):
     plt.figure(figsize=(8, 5))
     sns.boxplot(df['Order_Demand_Log'])
-    plt.title('✅ Outlier Detection: Log-Transformed Order Demand')
+    plt.title('Outlier Detection: Log-Transformed Order Demand')
     plt.show()
 
 # Autocorrelation Check
 def plot_autocorrelation(df):
     plt.figure(figsize=(10, 5))
     autocorrelation_plot(df['Order_Demand'])
-    plt.title('✅ Autocorrelation of Order Demand')
+    plt.title('Autocorrelation of Order Demand')
     plt.show()
 
 # Main Function
 def main():
-    filepath = r"C:\Users\sphur\Downloads\Historical Product Demand.csv"  # Update with correct file path
+    filepath = r"C:\Users\sphur\Downloads\Historical Product Demand.csv" 
 
     df = load_data(filepath)
     df = preprocess_data(df)
-    df = apply_log_transformation(df)  # Apply Log Transformation
+    df = apply_log_transformation(df)  
     check_missing_dates(df)
     descriptive_analysis(df)
     plot_demand_distribution(df)
