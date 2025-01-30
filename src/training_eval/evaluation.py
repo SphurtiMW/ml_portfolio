@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 # ============================
 # Step 1: Load the trained model
 # ============================
-MODEL_PATH = r"C:\Users\sphur\OneDrive\Desktop\ml_portfolio\src\components\lstm_demand_forecasting.h5"
-DATA_PATH = r"C:\Users\sphur\Downloads\Historical Product Demand.csv"
+MODEL_PATH = "lstm_demand_forecasting.h5"
+DATA_PATH = "Historical Product Demand.csv"
 
 if not os.path.exists(MODEL_PATH):
     raise FileNotFoundError(f"Model file not found at: {MODEL_PATH}")
