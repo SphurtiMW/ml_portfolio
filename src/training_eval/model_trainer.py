@@ -11,7 +11,7 @@ os.environ["OMP_NUM_THREADS"] = "4"
 tf.config.threading.set_inter_op_parallelism_threads(4)
 tf.config.threading.set_intra_op_parallelism_threads(4)
 
-df = pd.read_csv(r"C:\Users\sphur\Downloads\Historical Product Demand.csv", parse_dates=["Date"], index_col="Date")
+df = pd.read_csv("Historical Product Demand.csv", parse_dates=["Date"], index_col="Date")
 df = df[['Order_Demand']]  
 
 df['Order_Demand_Log'] = np.log1p(df['Order_Demand'])
