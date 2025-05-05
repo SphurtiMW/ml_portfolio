@@ -1,5 +1,5 @@
-Supply Chain Demand Forecasting Using LSTM
-
+**Time Series Based Supply Chain Demand Forecasting Using LSTM
+**
 - Project Overview
 
 This project explores demand forecasting using Long Short-Term Memory (LSTM)  to predict future order demand based on historical data. The objective is to enhance inventory management and supply chain efficiency by leveraging deep learning models.
