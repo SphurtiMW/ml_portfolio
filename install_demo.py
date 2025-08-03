@@ -37,6 +37,8 @@ def main():
         "pandas>=2.0.0",
         "numpy>=1.24.0",
         "scikit-learn>=1.3.0",
+        "matplotlib>=3.7.0",
+        "seaborn>=0.12.0",
         "python-multipart>=0.0.6",
         "python-jose[cryptography]>=3.3.0",
         "passlib[bcrypt]>=1.7.4",

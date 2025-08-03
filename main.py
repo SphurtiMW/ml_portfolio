@@ -103,6 +103,41 @@ def run_data_processing():
         logger.error(f"Data processing failed: {e}")
 
 
+def run_eda_analysis():
+    """Run comprehensive EDA analysis"""
+    logger.info("Running comprehensive EDA analysis")
+    
+    try:
+        from src.analysis.eda import run_eda_analysis
+        
+        # Check if data file exists
+        data_file = Path("artifacts/Historical Product Demand.csv")
+        if not data_file.exists():
+            logger.error(f"Data file not found: {data_file}")
+            logger.info("Please ensure the Historical Product Demand.csv file is in the artifacts/ directory")
+            return
+        
+        # Run comprehensive EDA
+        result = run_eda_analysis(str(data_file))
+        
+        logger.info("EDA analysis completed successfully",
+                   dataset_shape=result.dataset_info.get('shape'),
+                   missing_data_percentage=result.missing_data_analysis.get('missing_percentage'),
+                   outlier_percentage=result.outlier_analysis.get('outlier_percentage'))
+        
+        print("\n📊 EDA Analysis Summary:")
+        print(f"Dataset Shape: {result.dataset_info.get('shape')}")
+        print(f"Missing Data: {result.missing_data_analysis.get('missing_percentage'):.2f}%")
+        print(f"Outliers: {result.outlier_analysis.get('outlier_percentage', 0):.2f}%")
+        print("Check the 'plots' directory for visualizations!")
+        
+    except ImportError as e:
+        logger.error(f"Missing dependencies for EDA: {e}")
+        logger.info("Install dependencies with: python3 install_demo.py")
+    except Exception as e:
+        logger.error(f"EDA analysis failed: {e}")
+
+
 def run_model_training():
     """Run model training example"""
     logger.info("Running model training example")
@@ -173,7 +208,7 @@ def main():
     
     parser.add_argument(
         "--mode",
-        choices=["api", "process", "train", "test"],
+        choices=["api", "process", "train", "test", "eda"],
         default="api",
         help="Application mode (default: api)"
     )
@@ -227,6 +262,11 @@ def main():
             print("🧪 Running tests")
             print("=" * 60)
             run_tests()
+            
+        elif args.mode == "eda":
+            print("📊 Running comprehensive EDA analysis")
+            print("=" * 60)
+            run_eda_analysis()
             
     except KeyboardInterrupt:
         logger.info("Application interrupted by user")
