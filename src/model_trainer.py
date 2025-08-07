@@ -163,11 +163,8 @@ plt.show()
 # --- Save Final Model ---
 os.makedirs("models", exist_ok=True)
 model.save(FINAL_MODEL_PATH)
-<<<<<<< HEAD
+
 print(f"Model saved at: {FINAL_MODEL_PATH}")
-=======
-<<<<<<< HEAD
 print(f" Model saved at: {FINAL_MODEL_PATH}")
-=======
 print(f"Model saved at: {FINAL_MODEL_PATH}")
 
