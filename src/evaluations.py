@@ -5,7 +5,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score, m
 import matplotlib.pyplot as plt
 
 # Load prediction results (ensure this file exists)
-df = pd.read_csv(predictions_path = "artifacts/predictions.csv")
+df = pd.read_csv("artifacts/predictions.csv")
 
 # Rename columns if needed
 # You can uncomment and adjust below if the CSV has different headers
