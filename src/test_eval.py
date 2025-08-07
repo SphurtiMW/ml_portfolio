@@ -7,7 +7,7 @@ from sklearn.metrics import (
 )
 
 # Load prediction results
-df = pd.read_csv(r"C:\Users\sphur\Downloads\ml_portfolio-main\src\evaluation_results.csv")
+df = pd.read_csv("src/evaluation_results.csv")
 
 # Ensure required columns exist
 assert "Actual" in df.columns and "Predicted" in df.columns, "CSV must contain 'Actual' and 'Predicted' columns"
