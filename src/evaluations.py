@@ -17,7 +17,9 @@ if 'Actual' not in df.columns or 'Predicted' not in df.columns:
 
 # Metrics
 mae = mean_absolute_error(df['Actual'], df['Predicted'])
-rmse = mean_squared_error(df['Actual'], df['Predicted'], squared=False)
+mse = mean_squared_error(df['Actual'], df['Predicted'])
+rmse = np.sqrt(mse)
+
 r2 = r2_score(df['Actual'], df['Predicted'])
 mape = mean_absolute_percentage_error(df['Actual'], df['Predicted']) * 100
 
