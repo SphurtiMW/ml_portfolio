@@ -57,7 +57,7 @@ df.drop(columns=to_drop, inplace=True)
 scaler = MinMaxScaler()
 scaled = scaler.fit_transform(df)
 df_scaled = pd.DataFrame(scaled, index=df.index, columns=df.columns)
-df_scaled.to_hdf('artifacts/processed_data.h5', key='df', mode='w')
+df_scaled.to_csv('processed_data.csv')
 
 # --- Train/Test Split ---
 test_start = df_scaled.index.max() - pd.Timedelta(days=SPLIT_DAYS)
@@ -163,4 +163,12 @@ plt.show()
 # --- Save Final Model ---
 os.makedirs("models", exist_ok=True)
 model.save(FINAL_MODEL_PATH)
+<<<<<<< HEAD
 print(f"Model saved at: {FINAL_MODEL_PATH}")
+=======
+<<<<<<< HEAD
+print(f" Model saved at: {FINAL_MODEL_PATH}")
+=======
+print(f"Model saved at: {FINAL_MODEL_PATH}")
+>>>>>>> 353391f (updated model_trainer)
+>>>>>>> d0e9c68 (Add tables (pytables) for .to_hdf support)
