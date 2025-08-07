@@ -5,4 +5,8 @@ matplotlib
 scikit-learn
 statsmodels
 Flask
+pytest
+tensorflow
 #-e .
+
+
