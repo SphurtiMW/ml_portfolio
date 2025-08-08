@@ -94,9 +94,10 @@ Platform: Streamlit Cloud or Hugging Face Spaces
 
 Docker support for containerized deployment
 
-Optional: GitHub Actions CI/CD for automation
+Optional: GitHub Actions CI/CD for automation '''
 
-Future Improvements
+Future Improvements:
+
  Add holidays/seasonality features
 
  Multi-product or region-based forecasting
