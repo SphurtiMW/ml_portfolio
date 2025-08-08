@@ -5,6 +5,7 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 
 from tensorflow.keras.models import Sequential
+from tensorflow.keras.losses import MeanSquaredError
 from tensorflow.keras.layers import LSTM, Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from sklearn.preprocessing import MinMaxScaler
@@ -88,7 +89,7 @@ model = Sequential([
     Dense(16, activation='relu'),
     Dense(1)
 ])
-model.compile(optimizer='adam', loss='mse')
+model.compile(optimizer='adam', loss=MeanSquaredError())
 
 # --- Callbacks ---
 os.makedirs(CHECKPOINT_DIR, exist_ok=True)
@@ -150,15 +151,22 @@ for _ in range(FUTURE_DAYS):
     future_preds.append(np.expm1(next_pred))
 
 future_dates = pd.date_range(start=df.index.max() + pd.Timedelta(days=1), periods=FUTURE_DAYS)
+# --- Plot Test Set ---
 plt.figure(figsize=(12, 6))
-plt.plot(future_dates, future_preds, marker='o', color='green')
-plt.title("Future Forecast (Next 14 Days)")
+plt.plot(test_df.index[SEQ_LENGTH:], y_test_inv, label="Actual", color="blue")
+plt.plot(test_df.index[SEQ_LENGTH:], y_pred_inv, label="Predicted", color="red")
+plt.title("Demand Forecasting - Test Set")
 plt.xlabel("Date")
-plt.ylabel("Predicted Order Demand")
-plt.grid(True)
-plt.tight_layout()
-plt.savefig("artifacts/future_forecast.png")
+plt.ylabel("Order Demand")
+plt.legend()
+
+# Ensure directory exists
+os.makedirs("artifacts", exist_ok=True)
+
+# Save the plot
+plt.savefig("artifacts/test_forecast.png")
 plt.show()
+
 
 # --- Save Final Model ---
 os.makedirs("models", exist_ok=True)
