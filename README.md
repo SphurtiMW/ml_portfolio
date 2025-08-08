@@ -1,80 +1,106 @@
-Time Series Based Supply Chain Demand Forecasting Using LSTM
+# Supply Chain Demand Forecasting
 
-- Project Overview
+A Streamlit-based web application that predicts future product demand using an LSTM model trained on historical order data. Built with TensorFlow, pandas, and deployed for real-time forecasting.
 
-This project explores demand forecasting using Long Short-Term Memory (LSTM)  to predict future order demand based on historical data. The objective is to enhance inventory management and supply chain efficiency by leveraging deep learning models.
+---
 
-- Project Status
+## Live Demo
 
-This is an ongoing project with active improvements and refinements in model training, evaluation, and deployment. While initial model performance metrics suggest challenges in generalization, further optimizations are in progress to improve predictive accuracy.
+> Currently under deployment – Link coming soon
 
-- Objectives
+---
 
-    - Develop a time-series forecasting model using LSTM networks.
+## Features
 
-    - Optimize model training on TPU for efficiency.
+- Predict next-day product demand
+- Extend forecasting up to 14 days
+- Visualize historical trends (log-transformed)
+- Export charts and forecast results
+- Lightweight and cloud-deployable
 
-    - Implement robust preprocessing and data transformation techniques.
+---
 
-    - Evaluate model performance and refine hyperparameters.
+## Model Architecture
 
-    - Deploy a scalable prediction model for real-world supply chain applications.
+Input → LSTM(128, return_sequences=True)
+→ Dropout(0.1)
+→ LSTM(64)
+→ Dropout(0.1)
+→ Dense(16, activation='relu')
+→ Dense(1)
 
-- Dataset
 
-The dataset used for this project is Historical Product Demand.csv from Kaggle
+- LSTM layers capture time dependencies in sequences
+- Dropout layers reduce overfitting
+- Dense layers refine to a single demand output
 
-- Data Preprocessing
+---
 
-    - Log Transformation: Applied to stabilize variance in demand values.
+## Data & Preprocessing
 
-    - MinMax Scaling: Normalized data between 0 and 1 for improved LSTM performance.
+- Dataset: Historical daily order demand
+- Target Variable: Log-transformed `Order_Demand`
+- Features:
+  - `MA_7` – 7-day moving average
+  - `STD_7` – 7-day rolling standard deviation
+  - `Lag_1` – Previous day's demand
+  - `DayOfWeek`, `IsWeekend`, `Month`
+- Scaling: `MinMaxScaler`
+- Sequence Length: 30 time steps
 
-    - Sequence Generation: Converted time series into supervised learning format.
+---
 
-- Model Architecture
+## Model Performance
 
-The LSTM model consists of:
+| Metric | Value |
+|--------|-------|
+| MAE    | 0.09  |
+| RMSE   | 0.19  |
 
-    - LSTM Layer 1: 64 units, return sequences enabled.
+- MAE (Mean Absolute Error): Measures average absolute error
+- RMSE (Root Mean Squared Error): Penalizes large deviations
 
-    - Dropout: 20%.
+---
 
-    - LSTM Layer 2: 32 units, return sequences disabled.
+## How to Run Locally
 
-    - Dropout: 20%.
+```bash
+# Clone the repository
+git clone https://github.com/your-username/ml_portfolio.git
+cd ml_portfolio
 
-    - Dense Layer : 16 units with ReLU activation.
+# Install dependencies
+pip install -r requirements.txt
 
-    - Output Layer: 1 neuron for demand prediction.
+# Launch the app
+streamlit run src/streamlit_app.py
 
-- Current Challenges and Ongoing Improvements
+ml_portfolio/
+├── artifacts/
+│   ├── Historical Product Demand.csv
+│   └── test_forecast.png (optional)
+├── checkpoints/
+│   └── best_model.keras
+├── src/
+│   ├── model_trainer.py
+│   ├── evaluations.py
+│   └── streamlit_app.py
+├── requirements.txt
+├── Dockerfile
+└── README.md
 
-    - Model Evaluation and Performance Issues
+Deployment
+Platform: Streamlit Cloud or Hugging Face Spaces
 
-    - Initial evaluation metrics indicate that the model predictions are not well-aligned with actual demand trends.
+Docker support for containerized deployment
 
-    - The predicted values show minimal variation, requiring further investigation into training dynamics, loss convergence, and data   preprocessing.
+Optional: GitHub Actions CI/CD for automation
 
-- Next Steps
+Future Improvements
+ Add holidays/seasonality features
 
-    - Refine Preprocessing Pipelines: Ensure inverse transformations correctly map back to original demand values.
+ Multi-product or region-based forecasting
 
-    - Hyperparameter Tuning: Adjust learning rate, batch size, and sequence length to optimize model learning.
+ Scheduled model retraining
 
-    - Additional Feature Engineering: Incorporate external variables such as holidays, weather patterns, or seasonal trends.
-
-    - Model Training Enhancements: Increase training epochs and monitor overfitting with early stopping mechanisms.
-
-- Deployment Plan
-
-    - Once the model achieves satisfactory performance, the next steps will include:
-
-    - Saving and Versioning Models: Maintain different versions of trained models for comparison.
-
-    - API Development: Deploy a REST API using Flask or FastAPI to serve predictions.
-
-- Conclusion
-
-While this project is still in development, it highlights the complexities of time-series forecasting using deep learning. The initial findings underscore the importance of feature engineering, hyperparameter tuning, and systematic evaluation in achieving a high-performing demand forecasting model. Future iterations will focus on refining model accuracy and deploying a production-ready solution.
-
+ Forecast uncertainty bands
