@@ -6,7 +6,7 @@ A predictive analytics project that leverages deep learning (LSTM) and classical
 
 ---
 
-## 🚀 Introduction
+## Introduction
 
 In modern supply chains, accurate demand forecasting is critical to minimizing inventory costs, improving customer satisfaction, and optimizing production planning. Traditional methods often fall short when faced with nonlinear patterns, high seasonality, and long-term dependencies in data. This project addresses the **problem of short-term demand forecasting** by applying and comparing two powerful time series forecasting models:
 
@@ -17,7 +17,7 @@ The main objective is to forecast **next-day product demand** using historical d
 
 ---
 
-## 🧠 Models Used & Why
+## Models Used & Why
 
 ### 1. LSTM (Long Short-Term Memory)
 - Captures long-range dependencies and trends in sequences.
