@@ -1,12 +1,36 @@
 # Supply Chain Demand Forecasting
 
-A Streamlit-based web application that predicts future product demand using an LSTM model trained on historical order data. Built with TensorFlow, pandas, and deployed for real-time forecasting.
+## Supply Chain Demand Forecasting using LSTM and SARIMA
+
+A predictive analytics project that leverages deep learning (LSTM) and classical time series modeling (SARIMA) to forecast future product demand.
 
 ---
 
-## Live Demo
+## 🚀 Introduction
 
-> Currently under deployment – Link coming soon
+In modern supply chains, accurate demand forecasting is critical to minimizing inventory costs, improving customer satisfaction, and optimizing production planning. Traditional methods often fall short when faced with nonlinear patterns, high seasonality, and long-term dependencies in data. This project addresses the **problem of short-term demand forecasting** by applying and comparing two powerful time series forecasting models:
+
+- **LSTM (Long Short-Term Memory)**: A deep learning model capable of learning from sequences and remembering long-term dependencies. It is well-suited for noisy and nonlinear time series data.
+- **SARIMA (Seasonal AutoRegressive Integrated Moving Average)**: A classical statistical model that performs well with seasonal and stationary time series data.
+
+The main objective is to forecast **next-day product demand** using historical data, and visualize comparative model performance to help stakeholders make informed inventory decisions.
+
+---
+
+## 🧠 Models Used & Why
+
+### 1. LSTM (Long Short-Term Memory)
+- Captures long-range dependencies and trends in sequences.
+- More robust to irregular patterns and missing values.
+- Architecture includes stacked LSTM layers followed by dense layers for regression.
+
+### 2. SARIMA (Seasonal ARIMA)
+- Incorporates seasonality and trend using traditional time series decomposition.
+- Simpler and more interpretable.
+- Effective when the time series has consistent seasonal patterns.
+
+### Why Use Both?
+Comparing deep learning and classical models provides more transparency in results. It also allows decision-makers to choose the right model based on forecast horizon, interpretability, or computational cost.
 
 ---
 
@@ -94,9 +118,17 @@ Platform: Streamlit Cloud or Hugging Face Spaces
 
 Docker support for containerized deployment
 
-Optional: GitHub Actions CI/CD for automation '''
+Optional: GitHub Actions CI/CD for automation 
 
-Future Improvements:
+---
+
+## Live Demo
+
+> Currently under deployment – Link coming soon
+
+---
+
+## Future Improvements:
 
  Add holidays/seasonality features
 

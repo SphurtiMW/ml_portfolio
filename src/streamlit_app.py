@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 
 # --- Constants ---
-MODEL_PATH = "checkpoints/best_model.keras"
+MODEL_PATH = "checkpoints/optimized_lstm_model.keras"
 DATA_PATH = "artifacts/Historical Product Demand.csv"
 SEQ_LENGTH = 30
 FUTURE_DAYS = 14
