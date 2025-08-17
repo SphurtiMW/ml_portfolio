@@ -76,13 +76,20 @@ Input → LSTM(128, return_sequences=True)
 
 ## Model Performance
 
-| Metric | Value |
-|--------|-------|
-| MAE    | 0.09  |
-| RMSE   | 0.19  |
+| Metric   | LSTM       | SARIMA           |
+| -------- | ---------- | ---------------- |
+| MAE      | **6.50**   | 45.57            |
+| RMSE     | **8.50**   | 99.84            |
+| MAPE (%) | **1.41%**  | 19.17%           |
+| R² Score | **0.9052** | (Not applicable) |
 
-- MAE (Mean Absolute Error): Measures average absolute error
-- RMSE (Root Mean Squared Error): Penalizes large deviations
+Interpretation:
+
+LSTM outperforms SARIMA across all error metrics.
+
+SARIMA shows a decent trend-following ability but fails with large fluctuations or spikes.
+
+LSTM offers higher precision, especially in capturing short-term and complex temporal trends.
 
 ---
 
