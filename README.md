@@ -85,11 +85,11 @@ Input → LSTM(128, return_sequences=True)
 
 Interpretation:
 
-LSTM outperforms SARIMA across all error metrics.
+- LSTM outperforms SARIMA across all error metrics.
 
-SARIMA shows a decent trend-following ability but fails with large fluctuations or spikes.
+- SARIMA shows a decent trend-following ability but fails with large fluctuations or spikes.
 
-LSTM offers higher precision, especially in capturing short-term and complex temporal trends.
+- LSTM offers higher precision, especially in capturing short-term and complex temporal trends.
 
 ---
 
